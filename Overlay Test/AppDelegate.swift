@@ -16,22 +16,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        window.movableByWindowBackground = true
+        window.isMovableByWindowBackground = true
         visualEffectView.maskImage = _maskImage(cornerRadius: 20.0)
-        visualEffectView.state = .Active
-        visualEffectView.material = .Dark
+        visualEffectView.state = .active
+        visualEffectView.material = .dark
     }
 
-    private func _maskImage(cornerRadius cornerRadius: CGFloat) -> NSImage {
+    private func _maskImage(cornerRadius: CGFloat) -> NSImage {
         let edgeLength = 2.0 * cornerRadius + 1.0
         let maskImage = NSImage(size: NSSize(width: edgeLength, height: edgeLength), flipped: false) { rect in
             let bezierPath = NSBezierPath(roundedRect: rect, xRadius: cornerRadius, yRadius: cornerRadius)
-            NSColor.blackColor().set()
+            NSColor.black.set()
             bezierPath.fill()
             return true
         }
         maskImage.capInsets = NSEdgeInsets(top: cornerRadius, left: cornerRadius, bottom: cornerRadius, right: cornerRadius)
-        maskImage.resizingMode = .Stretch
+        maskImage.resizingMode = .stretch
         return maskImage
     }
 
